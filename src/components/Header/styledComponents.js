@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const HeaderSection = styled.div`
   height: 13vh;
-  background-color: ${props => (props.theme ? 'black' : 'white')};
+  background-color: ${props => (props.theme === true ? 'black' : 'white')};
   display: flex;
   justify-content: space-between;
   align-items: center;
