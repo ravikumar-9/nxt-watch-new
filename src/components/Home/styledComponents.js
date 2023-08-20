@@ -12,9 +12,11 @@ export const HomeSectionMainContainer = styled.div`
 `
 
 export const SearchBar = styled.input`
-  width: 40%;
-  border: 2px solid black;
+  width: 50%;
+  border: none;
   height: 30px;
+  font-weight: bold;
+  font-size: 14px;
 `
 
 export const HomeSectionVideosContainer = styled.div`
@@ -33,28 +35,49 @@ export const HomeFailureViewContainer = styled.div`
 `
 
 export const HomeFailureImage = styled.img`
-  height: 130px;
-  width: 230px;
+  height: 200px;
+  width: 270px;
   margin-bottom: 13px;
 `
 
 export const HomeFailureHeading = styled.h1`
   font-weight: bold;
   font-size: 20px;
-  color: ${props => (props.theme === true ? '#000000' : '#ffffff')};
+  color: ${props => (props.theme === true ? '#ffffff' : '#000000')};
 `
 
 export const HomeFailureDescription = styled.p`
   font-weight: bold;
   font-size: 13px;
-  color: ${props => (props.theme === true ? '#000000' : '#ffffff')};
+  color: ${props => (props.theme === true ? '#ffffff' : '#000000')};
 `
 
 export const RetryButton = styled.button`
   height: 30px;
   width: 90px;
   border: none;
-  background-color: blue;
+  background-color: #3b82f6;
   font-weight: bold;
   color: ${props => (props.theme === true ? '#ffffff' : '#000000')};
+  margin-top: 12px;
+  border-radius: 3px;
+`
+
+export const SearchbarContainer = styled.div`
+  width: 50%;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: transparent;
+`
+export const SearchIcon = styled.button`
+  height: 30px;
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border: none;
 `

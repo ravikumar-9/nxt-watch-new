@@ -6,6 +6,8 @@ import Cookies from 'js-cookie'
 
 import Loader from 'react-loader-spinner'
 
+import {BiSearch} from 'react-icons/bi'
+
 import WatchContext from '../../context/WatchContext'
 
 import {
@@ -18,6 +20,8 @@ import {
   HomeFailureHeading,
   HomeFailureDescription,
   RetryButton,
+  SearchbarContainer,
+  SearchIcon,
 } from './styledComponents'
 
 import Header from '../Header'
@@ -67,7 +71,7 @@ class Home extends Component {
   }
 
   onChangeSearchInput = event => {
-    this.setState(event.target.value)
+    this.setState({searchInput: event.target.value})
   }
 
   renderHomeLoader = () => (
@@ -76,51 +80,78 @@ class Home extends Component {
     </div>
   )
 
-  renderHomeSuccessView = isDarkTheme => {
-    console.log(isDarkTheme)
-    return <h1>h</h1>
-  }
-
-  onRetry = () => {
-    this.getHomeSectionVideos()
-  }
-
-  renderHomeFailureView = isDarkTheme =>
+  getHomeNoVideosView = isDarkTheme =>
     isDarkTheme ? (
       <>
         <HomeFailureViewContainer>
           <HomeFailureImage
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-            alt="failure view"
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+            alt="no videos"
           />
           <HomeFailureHeading theme={isDarkTheme}>
-            Oops! Something Went Wrong
+            No Search results found
           </HomeFailureHeading>
           <HomeFailureDescription theme={isDarkTheme}>
-            We are having some trouble to complete your request.Please try
-            again.
+            Try different keywords or remove search filter
           </HomeFailureDescription>
-          <RetryButton onClick={this.onRetry()} theme={isDarkTheme}>
+          <RetryButton onClick={this.onRetry} theme={isDarkTheme}>
             Retry
           </RetryButton>
         </HomeFailureViewContainer>
       </>
     ) : (
-      <>
-        <HomeFailureViewContainer>
-          <HomeFailureImage
-            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
-            alt="failure view"
-          />
-          <HomeFailureHeading>Oops! Something Went Wrong</HomeFailureHeading>
-          <HomeFailureDescription>
-            We are having some trouble to complete your request.Please try
-            again.
-          </HomeFailureDescription>
-          <RetryButton onClick={this.onRetry()}>Retry</RetryButton>
-        </HomeFailureViewContainer>
-      </>
+      <HomeFailureViewContainer>
+        <HomeFailureImage
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
+          alt="no videos"
+        />
+        <HomeFailureHeading theme={isDarkTheme}>
+          No Search results found
+        </HomeFailureHeading>
+        <HomeFailureDescription theme={isDarkTheme}>
+          Try different keywords or remove search filter
+        </HomeFailureDescription>
+        <RetryButton onClick={this.onRetry} theme={isDarkTheme}>
+          Retry
+        </RetryButton>
+      </HomeFailureViewContainer>
     )
+
+  renderHomeSuccessView = isDarkTheme => {
+    console.log(isDarkTheme)
+    const {homeVideosList} = this.state
+    const showHomeVideos = homeVideosList.length === 0
+    return showHomeVideos ? this.getHomeNoVideosView(isDarkTheme) : null
+  }
+
+  onRetry = () => {
+    this.setState({searchInput: ''})
+    this.getHomeSectionVideos()
+  }
+
+  renderHomeFailureView = isDarkTheme => (
+    <>
+      <HomeFailureViewContainer>
+        <HomeFailureImage
+          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+          alt="failure view"
+        />
+        <HomeFailureHeading theme={isDarkTheme}>
+          Oops! Something Went Wrong
+        </HomeFailureHeading>
+        <HomeFailureDescription theme={isDarkTheme}>
+          We are having some trouble to complete your request.Please try again.
+        </HomeFailureDescription>
+        <RetryButton onClick={this.onRetry} theme={isDarkTheme}>
+          Retry
+        </RetryButton>
+      </HomeFailureViewContainer>
+    </>
+  )
+
+  onClickSearchIcon = () => {
+    this.getHomeSectionVideos()
+  }
 
   renderSwitchCases = isDarkTheme => {
     const {apiStatus} = this.state
@@ -145,7 +176,7 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
 
-    const {apiStatus, homeVideosList} = this.state
+    const {apiStatus, homeVideosList, searchInput} = this.state
     console.log(apiStatus)
     console.log(homeVideosList)
     return (
@@ -158,10 +189,20 @@ class Home extends Component {
               <HomeSectionContainer theme={isDarkTheme} data-testid="home">
                 <Sidebar />
                 <HomeSectionMainContainer>
-                  <SearchBar
-                    type="search"
-                    onChange={this.onChangeSearchInput}
-                  />
+                  <SearchbarContainer>
+                    <SearchBar
+                      type="search"
+                      onChange={this.onChangeSearchInput}
+                      placeholder="Search"
+                      value={searchInput}
+                    />
+                    <SearchIcon
+                      data-testid="searchButton"
+                      onClick={this.onClickSearchIcon}
+                    >
+                      <BiSearch size={20} />
+                    </SearchIcon>
+                  </SearchbarContainer>
                   <HomeSectionVideosContainer>
                     {this.renderSwitchCases(isDarkTheme)}
                   </HomeSectionVideosContainer>
