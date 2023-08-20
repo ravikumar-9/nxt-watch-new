@@ -2,10 +2,12 @@ import styled from 'styled-components'
 
 export const HeaderSection = styled.div`
   height: 13vh;
-  background-color: ${props => (props.theme === true ? 'black' : 'white')};
+  background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
 `
 
 export const WebsiteLogo = styled.img`

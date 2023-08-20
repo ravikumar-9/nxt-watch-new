@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom'
 
 import Cookies from 'js-cookie'
 
+import Loader from 'react-loader-spinner'
+
 import WatchContext from '../../context/WatchContext'
 
 import {
@@ -11,6 +13,11 @@ import {
   HomeSectionMainContainer,
   HomeSectionVideosContainer,
   SearchBar,
+  HomeFailureViewContainer,
+  HomeFailureImage,
+  HomeFailureHeading,
+  HomeFailureDescription,
+  RetryButton,
 } from './styledComponents'
 
 import Header from '../Header'
@@ -25,29 +32,112 @@ const apiStatusConstants = {
 }
 
 class Home extends Component {
-  state = {searchInput: '', apiStatus: apiStatusConstants.initial}
+  state = {
+    searchInput: '',
+    apiStatus: apiStatusConstants.initial,
+    homeVideosList: [],
+  }
 
   componentDidMount() {
     this.getHomeSectionVideos()
   }
 
   getHomeSectionVideos = async () => {
+    this.setState({apiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     const {searchInput} = this.state
     const url = `https://apis.ccbp.in/videos/all?search=${searchInput}`
     const options = {
       method: 'GET',
-      Authorization: `Bearer ${jwtToken}`,
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
     }
     const fetchedResponse = await fetch(url, options)
-    console.log(fetchedResponse)
+    const fetchedData = await fetchedResponse.json()
+    console.log(fetchedData)
+    if (fetchedResponse.ok === true) {
+      this.setState({
+        apiStatus: apiStatusConstants.success,
+        homeVideosList: fetchedData.videos,
+      })
+    } else {
+      this.setState({apiStatus: apiStatusConstants.failure})
+    }
   }
 
   onChangeSearchInput = event => {
     this.setState(event.target.value)
   }
 
-  renderSwitchCases = () => <h1>h</h1>
+  renderHomeLoader = () => (
+    <div className="loader-container" data-testid="loader">
+      <Loader type="ThreeDots" color="blue" height="50" width="50" />
+    </div>
+  )
+
+  renderHomeSuccessView = isDarkTheme => {
+    console.log(isDarkTheme)
+    return <h1>h</h1>
+  }
+
+  onRetry = () => {
+    this.getHomeSectionVideos()
+  }
+
+  renderHomeFailureView = isDarkTheme =>
+    isDarkTheme ? (
+      <>
+        <HomeFailureViewContainer>
+          <HomeFailureImage
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+            alt="failure view"
+          />
+          <HomeFailureHeading theme={isDarkTheme}>
+            Oops! Something Went Wrong
+          </HomeFailureHeading>
+          <HomeFailureDescription theme={isDarkTheme}>
+            We are having some trouble to complete your request.Please try
+            again.
+          </HomeFailureDescription>
+          <RetryButton onClick={this.onRetry()} theme={isDarkTheme}>
+            Retry
+          </RetryButton>
+        </HomeFailureViewContainer>
+      </>
+    ) : (
+      <>
+        <HomeFailureViewContainer>
+          <HomeFailureImage
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+            alt="failure view"
+          />
+          <HomeFailureHeading>Oops! Something Went Wrong</HomeFailureHeading>
+          <HomeFailureDescription>
+            We are having some trouble to complete your request.Please try
+            again.
+          </HomeFailureDescription>
+          <RetryButton onClick={this.onRetry()}>Retry</RetryButton>
+        </HomeFailureViewContainer>
+      </>
+    )
+
+  renderSwitchCases = isDarkTheme => {
+    const {apiStatus} = this.state
+
+    switch (apiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.renderHomeLoader()
+
+      case apiStatusConstants.failure:
+        return this.renderHomeFailureView(isDarkTheme)
+
+      case apiStatusConstants.success:
+        return this.renderHomeSuccessView(isDarkTheme)
+      default:
+        return null
+    }
+  }
 
   render() {
     const jwtToken = Cookies.get('jwt_token')
@@ -55,8 +145,9 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
 
-    const {apiStatus} = this.state
+    const {apiStatus, homeVideosList} = this.state
     console.log(apiStatus)
+    console.log(homeVideosList)
     return (
       <WatchContext.Consumer>
         {value => {
@@ -64,7 +155,7 @@ class Home extends Component {
           return (
             <>
               <Header />
-              <HomeSectionContainer theme={isDarkTheme}>
+              <HomeSectionContainer theme={isDarkTheme} data-testid="home">
                 <Sidebar />
                 <HomeSectionMainContainer>
                   <SearchBar
@@ -72,7 +163,7 @@ class Home extends Component {
                     onChange={this.onChangeSearchInput}
                   />
                   <HomeSectionVideosContainer>
-                    {this.renderSwitchCases()}
+                    {this.renderSwitchCases(isDarkTheme)}
                   </HomeSectionVideosContainer>
                 </HomeSectionMainContainer>
               </HomeSectionContainer>

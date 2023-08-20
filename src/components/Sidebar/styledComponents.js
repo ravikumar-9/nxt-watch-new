@@ -5,7 +5,7 @@ export const SidebarContainer = styled.div`
     display: none;
   }
   width: 15%;
-  background-color: ${props => (props.theme === true ? 'black' : 'white')};
+  background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -26,7 +26,7 @@ export const SidebarItemContainer = styled.button`
 export const SidebarItemHeading = styled.h1`
   font-weight: bold;
   font-size: 13px;
-  color: ${props => (props.theme === true ? 'white' : 'black')};
+  color: ${props => (props.theme === true ? '#f9f9f9' : '#181818')};
   padding-left: 9px;
 `
 export const SidebarItemsContainer = styled.div`
