@@ -3,12 +3,12 @@ import styled from 'styled-components'
 export const HomeSectionContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
+
   background-color: ${props => (props.theme === true ? ' #181818' : '#f9f9f9')};
 `
 
 export const HomeSectionMainContainer = styled.div`
-  width: 85%;
+  width: 80%;
 `
 
 export const SearchBar = styled.input`
@@ -23,7 +23,7 @@ export const HomeSectionVideosContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
+  width: 100%;
 `
 
 export const HomeFailureViewContainer = styled.div`
@@ -80,4 +80,28 @@ export const SearchIcon = styled.button`
   align-items: center;
   background-color: #ffffff;
   border: none;
+`
+
+export const VideosList = styled.ul`
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    list-style-type: none;
+    justify-content: space-between;
+    margin-right: 70px;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: ${props =>
+      props.theme === true ? ' #181818' : '#f9f9f9'};
+  }
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    list-style-type: none;
+    background-color: ${props =>
+      props.theme === true ? ' #181818' : '#f9f9f9'};
+  }
 `

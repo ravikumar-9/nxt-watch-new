@@ -10,6 +10,8 @@ import {BiSearch} from 'react-icons/bi'
 
 import WatchContext from '../../context/WatchContext'
 
+import VideoItem from '../VideoItem'
+
 import {
   HomeSectionContainer,
   HomeSectionMainContainer,
@@ -22,6 +24,7 @@ import {
   RetryButton,
   SearchbarContainer,
   SearchIcon,
+  VideosList,
 } from './styledComponents'
 
 import Header from '../Header'
@@ -60,10 +63,19 @@ class Home extends Component {
     const fetchedResponse = await fetch(url, options)
     const fetchedData = await fetchedResponse.json()
     console.log(fetchedData)
+    const updatedData = fetchedData.videos.map(eachVideo => ({
+      id: eachVideo.id,
+      channel: eachVideo.channel,
+      title: eachVideo.title,
+      thumbnailUrl: eachVideo.thumbnail_url,
+      viewCount: eachVideo.view_count,
+      publishedAt: eachVideo.published_at,
+    }))
+    console.log(updatedData)
     if (fetchedResponse.ok === true) {
       this.setState({
         apiStatus: apiStatusConstants.success,
-        homeVideosList: fetchedData.videos,
+        homeVideosList: updatedData,
       })
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
@@ -121,7 +133,15 @@ class Home extends Component {
     console.log(isDarkTheme)
     const {homeVideosList} = this.state
     const showHomeVideos = homeVideosList.length === 0
-    return showHomeVideos ? this.getHomeNoVideosView(isDarkTheme) : null
+    return showHomeVideos ? (
+      this.getHomeNoVideosView(isDarkTheme)
+    ) : (
+      <VideosList theme={isDarkTheme}>
+        {homeVideosList.map(eachVideo => (
+          <VideoItem videoDetails={eachVideo} key={eachVideo.id} />
+        ))}
+      </VideosList>
+    )
   }
 
   onRetry = () => {

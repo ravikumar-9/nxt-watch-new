@@ -4,7 +4,7 @@ export const SidebarContainer = styled.div`
   @media screen and (max-width: 767px) {
     display: none;
   }
-  width: 15%;
+  width: 20%;
   background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
   height: 100vh;
   display: flex;
