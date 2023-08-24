@@ -56,7 +56,7 @@ export const TitleHeading = styled.p`
   line-height: 1.3;
 `
 
-export const ChannelName = styled.h1`
+export const ChannelName = styled.p`
   font-weight: bold;
   font-size: 13px;
   line-height: 0.6;

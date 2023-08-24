@@ -8,6 +8,8 @@ import Loader from 'react-loader-spinner'
 
 import {BiSearch} from 'react-icons/bi'
 
+import {CgClose} from 'react-icons/cg'
+
 import WatchContext from '../../context/WatchContext'
 
 import VideoItem from '../VideoItem'
@@ -25,6 +27,12 @@ import {
   SearchbarContainer,
   SearchIcon,
   VideosList,
+  BannerContainer,
+  LogoContainer,
+  BannerLogo,
+  BannerDescription,
+  BannerGetNowButton,
+  CloseButton,
 } from './styledComponents'
 
 import Header from '../Header'
@@ -43,6 +51,7 @@ class Home extends Component {
     searchInput: '',
     apiStatus: apiStatusConstants.initial,
     homeVideosList: [],
+    showBanner: true,
   }
 
   componentDidMount() {
@@ -105,7 +114,7 @@ class Home extends Component {
             No Search results found
           </HomeFailureHeading>
           <HomeFailureDescription theme={isDarkTheme}>
-            Try different keywords or remove search filter
+            Try different key words or remove search filter
           </HomeFailureDescription>
           <RetryButton onClick={this.onRetry} theme={isDarkTheme}>
             Retry
@@ -200,13 +209,17 @@ class Home extends Component {
     }
   }
 
+  onRemoveBanner = () => {
+    this.setState({showBanner: false})
+  }
+
   render() {
     const jwtToken = Cookies.get('jwt_token')
     if (jwtToken === undefined) {
       return <Redirect to="/login" />
     }
 
-    const {apiStatus, homeVideosList, searchInput} = this.state
+    const {apiStatus, homeVideosList, searchInput, showBanner} = this.state
     console.log(apiStatus)
     console.log(homeVideosList)
     return (
@@ -219,6 +232,24 @@ class Home extends Component {
               <HomeSectionContainer theme={isDarkTheme} data-testid="home">
                 <Sidebar />
                 <HomeSectionMainContainer>
+                  <BannerContainer banner={showBanner} data-testid="banner">
+                    <LogoContainer>
+                      <BannerLogo
+                        src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                        alt="nxt watch logo"
+                      />
+                      <CloseButton
+                        onClick={this.onRemoveBanner}
+                        data-testid="close"
+                      >
+                        <CgClose size={24} />
+                      </CloseButton>
+                    </LogoContainer>
+                    <BannerDescription>
+                      Buy Nxt Watch Premium prepaid plans with UPI
+                    </BannerDescription>
+                    <BannerGetNowButton>GET IT NOW</BannerGetNowButton>
+                  </BannerContainer>
                   <SearchbarContainer>
                     <SearchBar
                       type="search"

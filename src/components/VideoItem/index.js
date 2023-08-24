@@ -1,5 +1,7 @@
 import {formatDistanceToNow} from 'date-fns'
 
+import {Link} from 'react-router-dom'
+
 import WatchContext from '../../context/WatchContext'
 
 import {
@@ -15,10 +17,19 @@ import {
   PublishedDate,
 } from './styledComponents'
 
+import './index.css'
+
 const VideoItem = props => {
   console.log(props)
   const {videoDetails} = props
-  const {thumbnailUrl, channel, title, viewCount, publishedAt} = videoDetails
+  const {
+    thumbnailUrl,
+    channel,
+    title,
+    viewCount,
+    publishedAt,
+    id,
+  } = videoDetails
   const splitted = publishedAt.split(' ')
   console.log(splitted)
   const year = splitted[2]
@@ -38,13 +49,13 @@ const VideoItem = props => {
         const {isDarkTheme} = value
 
         return (
-          <>
-            <Video theme={isDarkTheme}>
+          <Video theme={isDarkTheme}>
+            <Link to={`/videos/${id}`} className="nav-link">
               <ThumbnailImage src={thumbnailUrl} alt="video thumbnail" />
               <VideoDetailsContainer theme={isDarkTheme}>
                 <ChannelLogo
                   src={channel.profile_image_url}
-                  alt={channel.name}
+                  alt="channel logo"
                 />
                 <ChannelDetailsContainer>
                   <TitleHeading>{title}</TitleHeading>
@@ -55,8 +66,8 @@ const VideoItem = props => {
                   </ViewsAndTimeContainer>
                 </ChannelDetailsContainer>
               </VideoDetailsContainer>
-            </Video>
-          </>
+            </Link>
+          </Video>
         )
       }}
     </WatchContext.Consumer>

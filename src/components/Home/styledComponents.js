@@ -133,3 +133,46 @@ export const VideosList = styled.ul`
       props.theme === true ? ' #181818' : '#f9f9f9'};
   }
 `
+export const BannerContainer = styled.div`
+  width: 98%;
+  margin-bottom: 13px;
+  background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
+  background-size: cover;
+  height: 200px;
+  display: ${props => (props.banner === true ? 'block' : 'none')};
+`
+export const LogoContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
+export const BannerLogo = styled.img`
+  height: 34px;
+  width: 130px;
+  margin-left: 10px;
+`
+
+export const BannerDescription = styled.p`
+  font-weight: bold;
+  font-size: 13px;
+  text-align: start;
+  width: 290px;
+  padding-left: 12px;
+`
+
+export const BannerGetNowButton = styled.button`
+  background-color: transparent;
+  border: 1px solid silver;
+  color: black;
+  font-size: 11px;
+  font-weight: bold;
+  margin-left: 12px;
+  height: 34px;
+  margin-top: 9px;
+`
+export const CloseButton = styled.button`
+  border: none;
+  outline: none;
+  background-color: none;
+`

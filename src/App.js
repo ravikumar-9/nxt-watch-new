@@ -4,7 +4,11 @@ import {Component} from 'react'
 
 import WatchContext from './context/WatchContext'
 
+import ProtectedRoute from './components/ProtectedRoute'
+
 import Home from './components/Home'
+
+import VideoItemDetails from './components/VideoItemDetails'
 
 import NotFound from './components/NotFound'
 
@@ -28,7 +32,12 @@ class App extends Component {
         value={{isDarkTheme, changeTheme: this.changeTheme}}
       >
         <Switch>
-          <Route exact path="/" component={Home} />
+          <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute
+            exact
+            path="/videos/:id"
+            component={VideoItemDetails}
+          />
           <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>
