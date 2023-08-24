@@ -4,7 +4,7 @@ export const SidebarContainer = styled.div`
   @media screen and (max-width: 767px) {
     display: none;
   }
-  width: 20%;
+  width: 15%;
   background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
   height: 90vh;
   display: flex;
@@ -12,29 +12,32 @@ export const SidebarContainer = styled.div`
   justify-content: space-between;
   position: relative;
 `
-export const SidebarItemContainer = styled.button`
+export const SidebarItemContainer = styled.li`
   display: flex;
   flex-direction: row;
   align-items: center;
   width: 100%;
+  justify-content: space-between;
   background-color: transparent;
   border: none;
   outline: none;
+  list-style-type: none;
   margin-bottom: 4px;
+  margin-left: 7px;
 `
 
 export const SidebarItemHeading = styled.h1`
   font-weight: bold;
-  font-size: 13px;
+  font-size: 15px;
   color: ${props => (props.theme === true ? '#f9f9f9' : '#181818')};
   padding-left: 9px;
 `
-export const SidebarItemsContainer = styled.div`
+export const SidebarItemsContainer = styled.nav`
   height: 30%;
   display: flex;
-  width: 90%;
+  width: 100%;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 40px;
 `
 export const ContactUs = styled.p`

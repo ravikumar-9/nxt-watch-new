@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {Link} from 'react-router-dom'
+
 import {TiHome} from 'react-icons/ti'
 
 import {AiFillFire} from 'react-icons/ai'
@@ -22,6 +24,8 @@ import {
   SocialMediaLogosContainer,
 } from './styledComponents'
 
+import './index.css'
+
 class Sidebar extends Component {
   render() {
     return (
@@ -33,31 +37,40 @@ class Sidebar extends Component {
             <>
               <SidebarContainer theme={isDarkTheme}>
                 <SidebarItemsContainer>
-                  <SidebarItemContainer>
-                    <TiHome height={40} width={40} color="red" size={24} />
-                    <SidebarItemHeading theme={isDarkTheme}>
-                      Home
-                    </SidebarItemHeading>
-                  </SidebarItemContainer>
-                  <SidebarItemContainer>
-                    <AiFillFire height={40} width={40} size={24} />
-                    <SidebarItemHeading theme={isDarkTheme}>
-                      Trending
-                    </SidebarItemHeading>
-                  </SidebarItemContainer>
-                  <SidebarItemContainer>
-                    <GrGamepad height={40} width={40} size={24} />
-                    <SidebarItemHeading theme={isDarkTheme}>
-                      Gaming
-                    </SidebarItemHeading>
-                  </SidebarItemContainer>
-                  <SidebarItemContainer>
-                    <HiOutlineSaveAs height={40} width={40} size={24} />
-                    <SidebarItemHeading theme={isDarkTheme}>
-                      Saved Videos
-                    </SidebarItemHeading>
-                  </SidebarItemContainer>
+                  <Link to="/" className="item-link">
+                    <SidebarItemContainer>
+                      <TiHome height={40} width={40} color="red" size={24} />
+                      <SidebarItemHeading theme={isDarkTheme}>
+                        Home
+                      </SidebarItemHeading>
+                    </SidebarItemContainer>
+                  </Link>
+                  <Link to="/trending" className="item-link">
+                    <SidebarItemContainer>
+                      <AiFillFire height={40} width={40} size={24} />
+                      <SidebarItemHeading theme={isDarkTheme}>
+                        Trending
+                      </SidebarItemHeading>
+                    </SidebarItemContainer>
+                  </Link>
+                  <Link to="/gaming" className="item-link">
+                    <SidebarItemContainer>
+                      <GrGamepad height={40} width={40} size={24} />
+                      <SidebarItemHeading theme={isDarkTheme}>
+                        Gaming
+                      </SidebarItemHeading>
+                    </SidebarItemContainer>
+                  </Link>
+                  <Link to="/saved-videos" className="item-link">
+                    <SidebarItemContainer>
+                      <HiOutlineSaveAs height={40} width={40} size={24} />
+                      <SidebarItemHeading theme={isDarkTheme}>
+                        Saved Videos
+                      </SidebarItemHeading>
+                    </SidebarItemContainer>
+                  </Link>
                 </SidebarItemsContainer>
+
                 <ContactUsContainer>
                   <ContactUs theme={isDarkTheme}>CONTACT US</ContactUs>
                   <SocialMediaLogosContainer>

@@ -12,6 +12,8 @@ import Trending from './components/Trending'
 
 import VideoItemDetails from './components/VideoItemDetails'
 
+import SavedVideos from './components/SavedVideos'
+
 import NotFound from './components/NotFound'
 
 import Login from './components/Login'
@@ -20,18 +22,18 @@ import './App.css'
 
 // Replace your code here
 class App extends Component {
-  state = {isDarkTheme: false}
+  state = {isDarkTheme: false, savedVideosList: []}
 
   changeTheme = () => {
     this.setState(prevState => ({isDarkTheme: !prevState.isDarkTheme}))
   }
 
   render() {
-    const {isDarkTheme} = this.state
+    const {isDarkTheme, savedVideosList} = this.state
 
     return (
       <WatchContext.Provider
-        value={{isDarkTheme, changeTheme: this.changeTheme}}
+        value={{isDarkTheme, changeTheme: this.changeTheme, savedVideosList}}
       >
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
@@ -41,6 +43,7 @@ class App extends Component {
             path="/videos/:id"
             component={VideoItemDetails}
           />
+          <ProtectedRoute exact path="/saved-videos" component={SavedVideos} />
           <Route exact path="/login" component={Login} />
           <Route component={NotFound} />
         </Switch>

@@ -9,7 +9,7 @@ export const HomeSectionContainer = styled.div`
 
 export const HomeSectionMainContainer = styled.div`
   @media screen and (min-width: 768px) {
-    width: 85%;
+    width: 80%;
   }
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -30,7 +30,6 @@ export const SearchBar = styled.input`
     height: 30px;
     font-weight: bold;
     font-size: 14px;
-    margin: auto;
   }
 `
 
@@ -88,8 +87,9 @@ export const SearchbarContainer = styled.div`
     background-color: transparent;
   }
   @media screen and (max-width: 767px) {
-    width: 50%;
+    width: 90%;
     height: 30px;
+    margin: auto;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -128,7 +128,6 @@ export const VideosList = styled.ul`
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    width: 100%;
     list-style-type: none;
     background-color: ${props =>
       props.theme === true ? ' #181818' : '#f9f9f9'};
