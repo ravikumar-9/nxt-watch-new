@@ -38,3 +38,15 @@ export const LogoutButton = styled.button`
   width: 90px;
   cursor: pointer;
 `
+export const ThemeButton = styled.button`
+  outline: none;
+  border: none;
+  background-color: transparent;
+  margin-right: 13px;
+`
+export const ProfileImage = styled.img`
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
+`

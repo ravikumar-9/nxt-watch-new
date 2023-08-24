@@ -8,6 +8,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 
 import Home from './components/Home'
 
+import Trending from './components/Trending'
+
 import VideoItemDetails from './components/VideoItemDetails'
 
 import NotFound from './components/NotFound'
@@ -33,6 +35,7 @@ class App extends Component {
       >
         <Switch>
           <ProtectedRoute exact path="/" component={Home} />
+          <ProtectedRoute exact path="/trending" component={Trending} />
           <ProtectedRoute
             exact
             path="/videos/:id"

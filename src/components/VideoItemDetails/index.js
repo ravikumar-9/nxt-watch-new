@@ -49,7 +49,12 @@ class VideoItemDetails extends Component {
     }
   }
 
+  renderSpecificVideoSwitchCases = () => <h1>j</h1>
+
   render() {
+    const {specificApiStatus, specificVideoDetails} = this.state
+    console.log(specificApiStatus)
+    console.log(specificVideoDetails)
     return (
       <SpecificVideoSection>
         {this.renderSpecificVideoSwitchCases()}
