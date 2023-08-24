@@ -8,15 +8,29 @@ export const HomeSectionContainer = styled.div`
 `
 
 export const HomeSectionMainContainer = styled.div`
-  width: 80%;
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `
 
 export const SearchBar = styled.input`
-  width: 50%;
-  border: none;
-  height: 30px;
-  font-weight: bold;
-  font-size: 14px;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+    border: none;
+    height: 30px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 90%;
+    border: none;
+    height: 30px;
+    font-weight: bold;
+    font-size: 14px;
+  }
 `
 
 export const HomeSectionVideosContainer = styled.div`
@@ -64,12 +78,26 @@ export const RetryButton = styled.button`
 `
 
 export const SearchbarContainer = styled.div`
-  width: 50%;
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: transparent;
+  @media screen and (min-width: 768px) {
+    width: 50%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+  }
+  @media screen and (max-width: 767px) {
+    width: 90%;
+    height: 30px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: transparent;
+    position: fixed;
+    right: 0;
+    left: 0;
+  }
 `
 export const SearchIcon = styled.button`
   height: 30px;

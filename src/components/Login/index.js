@@ -98,7 +98,7 @@ class Login extends Component {
         <LoginFormContainer>
           <LoginFormImage
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-            alt="login"
+            alt="website logo"
           />
           <LoginForm onSubmit={this.onSubmitDetails}>
             <LabelElement htmlFor="name">USERNAME</LabelElement>

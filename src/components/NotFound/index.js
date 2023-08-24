@@ -6,8 +6,11 @@ import {
   NotFoundDescription,
 } from './styledComponents'
 
+import Header from '../Header'
+
 const NotFound = () => (
   <>
+    <Header />
     <NotFoundSection>
       <NotFoundContainer>
         <NotFoundImage

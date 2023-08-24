@@ -1,13 +1,27 @@
 import styled from 'styled-components'
 
 export const Video = styled.li`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  margin-top: 20px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-  background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    background-color: ${props =>
+      props.theme === true ? '#181818' : '#f9f9f9'};
+  }
+  @media screen and (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 20px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    margin-right: auto;
+    background-color: ${props =>
+      props.theme === true ? '#181818' : '#f9f9f9'};
+  }
 `
 
 export const ThumbnailImage = styled.img`

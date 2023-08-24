@@ -15,6 +15,11 @@ import {
   SidebarItemContainer,
   SidebarItemsContainer,
   SidebarItemHeading,
+  ContactUs,
+  SocialMediaLogo,
+  ContactUsDescription,
+  ContactUsContainer,
+  SocialMediaLogosContainer,
 } from './styledComponents'
 
 class Sidebar extends Component {
@@ -53,6 +58,26 @@ class Sidebar extends Component {
                     </SidebarItemHeading>
                   </SidebarItemContainer>
                 </SidebarItemsContainer>
+                <ContactUsContainer>
+                  <ContactUs theme={isDarkTheme}>CONTACT US</ContactUs>
+                  <SocialMediaLogosContainer>
+                    <SocialMediaLogo
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
+                      alt="facebook logo"
+                    />
+                    <SocialMediaLogo
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
+                      alt="twitter logo"
+                    />
+                    <SocialMediaLogo
+                      src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
+                      alt="linked in logo"
+                    />
+                  </SocialMediaLogosContainer>
+                  <ContactUsDescription theme={isDarkTheme}>
+                    Enjoy! Now to see your channels and recommendations!
+                  </ContactUsDescription>
+                </ContactUsContainer>
               </SidebarContainer>
             </>
           )

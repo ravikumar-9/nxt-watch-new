@@ -61,18 +61,19 @@ class Home extends Component {
       },
     }
     const fetchedResponse = await fetch(url, options)
-    const fetchedData = await fetchedResponse.json()
-    console.log(fetchedData)
-    const updatedData = fetchedData.videos.map(eachVideo => ({
-      id: eachVideo.id,
-      channel: eachVideo.channel,
-      title: eachVideo.title,
-      thumbnailUrl: eachVideo.thumbnail_url,
-      viewCount: eachVideo.view_count,
-      publishedAt: eachVideo.published_at,
-    }))
-    console.log(updatedData)
+
     if (fetchedResponse.ok === true) {
+      const fetchedData = await fetchedResponse.json()
+      console.log(fetchedData)
+      const updatedData = fetchedData.videos.map(eachVideo => ({
+        id: eachVideo.id,
+        channel: eachVideo.channel,
+        title: eachVideo.title,
+        thumbnailUrl: eachVideo.thumbnail_url,
+        viewCount: eachVideo.view_count,
+        publishedAt: eachVideo.published_at,
+      }))
+      console.log(updatedData)
       this.setState({
         apiStatus: apiStatusConstants.success,
         homeVideosList: updatedData,
@@ -152,17 +153,24 @@ class Home extends Component {
   renderHomeFailureView = isDarkTheme => (
     <>
       <HomeFailureViewContainer>
-        <HomeFailureImage
-          src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
-          alt="failure view"
-        />
+        {isDarkTheme ? (
+          <HomeFailureImage
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-dark-theme-img.png"
+            alt="failure view"
+          />
+        ) : (
+          <HomeFailureImage
+            src="https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png"
+            alt="failure view"
+          />
+        )}
         <HomeFailureHeading theme={isDarkTheme}>
           Oops! Something Went Wrong
         </HomeFailureHeading>
         <HomeFailureDescription theme={isDarkTheme}>
           We are having some trouble to complete your request.Please try again.
         </HomeFailureDescription>
-        <RetryButton onClick={this.onRetry} theme={isDarkTheme}>
+        <RetryButton type="button" onClick={this.onRetry} theme={isDarkTheme}>
           Retry
         </RetryButton>
       </HomeFailureViewContainer>
@@ -175,6 +183,8 @@ class Home extends Component {
 
   renderSwitchCases = isDarkTheme => {
     const {apiStatus} = this.state
+
+    console.log(apiStatus)
 
     switch (apiStatus) {
       case apiStatusConstants.inProgress:
@@ -217,6 +227,7 @@ class Home extends Component {
                       value={searchInput}
                     />
                     <SearchIcon
+                      type="button"
                       data-testid="searchButton"
                       onClick={this.onClickSearchIcon}
                     >

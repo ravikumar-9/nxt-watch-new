@@ -1,3 +1,5 @@
+import {Link} from 'react-router-dom'
+
 import WatchContext from '../../context/WatchContext'
 
 import {
@@ -20,18 +22,28 @@ const Header = () => (
         <>
           <HeaderSection theme={isDarkTheme}>
             {isDarkTheme ? (
-              <WebsiteLogo
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
-                alt="watch logo"
-              />
+              <>
+                <Link to="/">
+                  <WebsiteLogo
+                    src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png"
+                    alt="website logo"
+                  />
+                </Link>
+              </>
             ) : (
-              <WebsiteLogo
-                src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
-                alt="watch logo"
-              />
+              <Link to="/">
+                <WebsiteLogo
+                  src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
+                  alt="website logo"
+                />
+              </Link>
             )}
             <IconsContainer>
-              <LogoutButton type="button" onClick={onChangeTheme}>
+              <LogoutButton
+                type="button"
+                onClick={onChangeTheme}
+                data-testid="theme"
+              >
                 Logout
               </LogoutButton>
             </IconsContainer>

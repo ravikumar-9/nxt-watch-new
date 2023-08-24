@@ -19,9 +19,19 @@ const VideoItem = props => {
   console.log(props)
   const {videoDetails} = props
   const {thumbnailUrl, channel, title, viewCount, publishedAt} = videoDetails
-  const year = publishedAt.split()
-  console.log(year)
-  const publishedDate = formatDistanceToNow(new Date('2021-01-21'))
+  const splitted = publishedAt.split(' ')
+  console.log(splitted)
+  const year = splitted[2]
+  const month = splitted[0]
+  const dateLength = splitted[1].length
+  const date = splitted[1].slice(-dateLength, -1)
+
+  const formattedDate = formatDistanceToNow(
+    new Date(`${year}-${month}-${date}`),
+  )
+
+  const s = formattedDate.split(' ').slice(1)
+
   return (
     <WatchContext.Consumer>
       {value => {
@@ -41,7 +51,7 @@ const VideoItem = props => {
                   <ChannelName>{channel.name}</ChannelName>
                   <ViewsAndTimeContainer theme={isDarkTheme}>
                     <ViewsCount>{viewCount} views</ViewsCount>
-                    <PublishedDate>{publishedDate}</PublishedDate>
+                    <PublishedDate>{s.join(' ')} ago</PublishedDate>
                   </ViewsAndTimeContainer>
                 </ChannelDetailsContainer>
               </VideoDetailsContainer>

@@ -11,8 +11,16 @@ export const HeaderSection = styled.div`
 `
 
 export const WebsiteLogo = styled.img`
-  height: 45px;
-  width: 180px;
+  @media screen and (min-width: 768px) {
+    height: 45px;
+    width: 180px;
+    margin-left: 14px;
+  }
+  @media screen and (max-width: 767px) {
+    height: 45px;
+    width: 120px;
+    margin-left: 14px;
+  }
 `
 
 export const IconsContainer = styled.div`
