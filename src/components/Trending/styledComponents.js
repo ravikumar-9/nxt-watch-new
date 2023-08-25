@@ -9,7 +9,8 @@ export const HomeSectionContainer = styled.div`
 
 export const HomeSectionMainContainer = styled.div`
   @media screen and (min-width: 768px) {
-    width: 80%;
+    width: 85%;
+    margin-left: 15%;
   }
   @media screen and (max-width: 767px) {
     width: 100%;

@@ -73,7 +73,7 @@ class Home extends Component {
 
     if (fetchedResponse.ok === true) {
       const fetchedData = await fetchedResponse.json()
-      console.log(fetchedData)
+
       const updatedData = fetchedData.videos.map(eachVideo => ({
         id: eachVideo.id,
         channel: eachVideo.channel,
@@ -82,7 +82,7 @@ class Home extends Component {
         viewCount: eachVideo.view_count,
         publishedAt: eachVideo.published_at,
       }))
-      console.log(updatedData)
+
       this.setState({
         apiStatus: apiStatusConstants.success,
         homeVideosList: updatedData,
@@ -219,9 +219,8 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
 
-    const {apiStatus, homeVideosList, searchInput, showBanner} = this.state
-    console.log(apiStatus)
-    console.log(homeVideosList)
+    const {searchInput, showBanner} = this.state
+
     return (
       <WatchContext.Consumer>
         {value => {

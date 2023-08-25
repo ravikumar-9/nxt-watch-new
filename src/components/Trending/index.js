@@ -6,8 +6,6 @@ import Cookies from 'js-cookie'
 
 import Loader from 'react-loader-spinner'
 
-import {BiSearch} from 'react-icons/bi'
-
 import {CgClose} from 'react-icons/cg'
 
 import WatchContext from '../../context/WatchContext'
@@ -18,14 +16,11 @@ import {
   HomeSectionContainer,
   HomeSectionMainContainer,
   HomeSectionVideosContainer,
-  SearchBar,
   HomeFailureViewContainer,
   HomeFailureImage,
   HomeFailureHeading,
   HomeFailureDescription,
   RetryButton,
-  SearchbarContainer,
-  SearchIcon,
   VideosList,
   BannerContainer,
   LogoContainer,
@@ -48,7 +43,6 @@ const apiStatusConstants = {
 
 class Home extends Component {
   state = {
-    searchInput: '',
     apiStatus: apiStatusConstants.initial,
     homeVideosList: [],
     showBanner: true,
@@ -72,7 +66,7 @@ class Home extends Component {
 
     if (fetchedResponse.ok === true) {
       const fetchedData = await fetchedResponse.json()
-      console.log(fetchedData)
+
       const updatedData = fetchedData.videos.map(eachVideo => ({
         id: eachVideo.id,
         channel: eachVideo.channel,
@@ -81,7 +75,7 @@ class Home extends Component {
         viewCount: eachVideo.view_count,
         publishedAt: eachVideo.published_at,
       }))
-      console.log(updatedData)
+
       this.setState({
         apiStatus: apiStatusConstants.success,
         homeVideosList: updatedData,
@@ -89,10 +83,6 @@ class Home extends Component {
     } else {
       this.setState({apiStatus: apiStatusConstants.failure})
     }
-  }
-
-  onChangeSearchInput = event => {
-    this.setState({searchInput: event.target.value})
   }
 
   renderHomeLoader = () => (
@@ -154,7 +144,6 @@ class Home extends Component {
   }
 
   onRetry = () => {
-    this.setState({searchInput: ''})
     this.getHomeSectionVideos()
   }
 
@@ -218,9 +207,8 @@ class Home extends Component {
       return <Redirect to="/login" />
     }
 
-    const {apiStatus, homeVideosList, searchInput, showBanner} = this.state
-    console.log(apiStatus)
-    console.log(homeVideosList)
+    const {showBanner} = this.state
+
     return (
       <WatchContext.Consumer>
         {value => {
@@ -249,21 +237,7 @@ class Home extends Component {
                     </BannerDescription>
                     <BannerGetNowButton>GET IT NOW</BannerGetNowButton>
                   </BannerContainer>
-                  <SearchbarContainer>
-                    <SearchBar
-                      type="search"
-                      onChange={this.onChangeSearchInput}
-                      placeholder="Search"
-                      value={searchInput}
-                    />
-                    <SearchIcon
-                      type="button"
-                      data-testid="searchButton"
-                      onClick={this.onClickSearchIcon}
-                    >
-                      <BiSearch size={20} />
-                    </SearchIcon>
-                  </SearchbarContainer>
+
                   <HomeSectionVideosContainer>
                     {this.renderSwitchCases(isDarkTheme)}
                   </HomeSectionVideosContainer>

@@ -6,10 +6,11 @@ export const SidebarContainer = styled.div`
   }
   width: 15%;
   background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
-  height: 90vh;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: fixed;
 `
 export const SidebarItemContainer = styled.li`
   display: flex;
