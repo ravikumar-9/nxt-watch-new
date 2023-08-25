@@ -1,12 +1,16 @@
 import styled from 'styled-components'
 
 export const HeaderSection = styled.div`
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
   height: 13vh;
   background-color: ${props => (props.theme === true ? '#181818' : '#f9f9f9')};
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  width: 100%;
   top: 0;
 `
 
@@ -27,7 +31,8 @@ export const IconsContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 30%;
+  width: 24%;
+  justify-content: space-between;
 `
 export const LogoutButton = styled.button`
   background-color: transparent;
@@ -42,11 +47,48 @@ export const ThemeButton = styled.button`
   outline: none;
   border: none;
   background-color: transparent;
-  margin-right: 13px;
 `
 export const ProfileImage = styled.img`
   height: 40px;
   width: 40px;
-  margin-right: 10px;
-  margin-left: 10px;
+`
+export const PopupContainer = styled.div`
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+`
+
+export const PopupDescription = styled.p`
+  font-weight: bold;
+  font-size: 13px;
+  text-align: center;
+`
+export const ConfirmButton = styled.button`
+  height: 30px;
+  width: 90px;
+  background-color: blue;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 3px;
+`
+
+export const CancelButton = styled.button`
+  height: 30px;
+  width: 90px;
+  background-color: transparent;
+  border: 1px solid black;
+  cursor: pointer;
+  color: black;
+  border-radius: 3px;
+`
+export const LogoutButtonsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+  margin: auto;
+  justify-content: space-between;
 `
