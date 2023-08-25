@@ -36,7 +36,7 @@ const Header = props => (
 
       const onLogout = () => {
         Cookies.remove('jwt_token')
-        history.replace('/')
+        history.replace('/login')
       }
 
       return (

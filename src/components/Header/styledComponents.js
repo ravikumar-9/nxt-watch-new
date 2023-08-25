@@ -58,12 +58,15 @@ export const PopupContainer = styled.div`
   flex-direction: column;
   align-items: center;
   border: none;
+  width: 200px;
+  padding: 4px;
 `
 
 export const PopupDescription = styled.p`
   font-weight: bold;
   font-size: 13px;
   text-align: center;
+  padding: 7px;
 `
 export const ConfirmButton = styled.button`
   height: 30px;
@@ -72,6 +75,7 @@ export const ConfirmButton = styled.button`
   border: none;
   cursor: pointer;
   color: white;
+  margin: 5px;
   border-radius: 3px;
 `
 
@@ -83,12 +87,13 @@ export const CancelButton = styled.button`
   cursor: pointer;
   color: black;
   border-radius: 3px;
+  margin: 5px;
 `
 export const LogoutButtonsContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 50%;
+  width: 40%;
   margin: auto;
   justify-content: space-between;
 `
