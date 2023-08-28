@@ -45,7 +45,7 @@ export const HomeFailureViewContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh;
+  height: 90vh;
 `
 
 export const HomeFailureImage = styled.img`
@@ -175,4 +175,35 @@ export const CloseButton = styled.button`
   border: none;
   outline: none;
   background-color: none;
+`
+
+export const SavedVideosBanner = styled.div`
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+`
+export const SavedVideosLogoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #cbd5e1;
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+`
+
+export const SavedVideosHeading = styled.h1`
+  font-weight: bold;
+  font-size: 24px;
+  color: ${props => (props.theme === true ? '#f9f9f9' : '#0f0f0f')}; ;
+`
+
+export const SavedLogoAndHeadingContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `

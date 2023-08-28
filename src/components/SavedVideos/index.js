@@ -14,13 +14,17 @@ import {
   HomeFailureImage,
   HomeFailureHeading,
   HomeFailureDescription,
+  SavedVideosBanner,
+  SavedVideosLogoContainer,
+  SavedVideosHeading,
+  SavedLogoAndHeadingContainer,
 } from './styledComponents'
 
 import Header from '../Header'
 
 import Sidebar from '../Sidebar'
 
-class Home extends Component {
+class SavedVideos extends Component {
   getNoSavedVideosView = isDarkTheme =>
     isDarkTheme ? (
       <>
@@ -66,9 +70,20 @@ class Home extends Component {
           return (
             <>
               <Header />
-              <HomeSectionContainer theme={isDarkTheme} data-testid="home">
+              <HomeSectionContainer
+                theme={isDarkTheme}
+                data-testid="savedVideos"
+              >
                 <Sidebar />
                 <HomeSectionMainContainer>
+                  <SavedVideosBanner>
+                    <SavedLogoAndHeadingContainer>
+                      <SavedVideosLogoContainer>h</SavedVideosLogoContainer>
+                      <SavedVideosHeading theme={isDarkTheme}>
+                        Saved Videos
+                      </SavedVideosHeading>
+                    </SavedLogoAndHeadingContainer>
+                  </SavedVideosBanner>
                   <HomeSectionVideosContainer>
                     {noOfSavedVideos !== 0
                       ? ''
@@ -84,4 +99,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default SavedVideos

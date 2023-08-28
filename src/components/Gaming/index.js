@@ -41,7 +41,7 @@ const apiStatusConstants = {
   initial: 'INITIAL',
 }
 
-class Home extends Component {
+class Gaming extends Component {
   state = {
     apiStatus: apiStatusConstants.initial,
     homeVideosList: [],
@@ -245,4 +245,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default Gaming

@@ -2,9 +2,9 @@ import {Component} from 'react'
 
 import Cookies from 'js-cookie'
 
-import Loader from 'react-loader-spinner'
+import ReactPlayer from 'react-player'
 
-import {AiFillFire} from 'react-icons/ai'
+import Loader from 'react-loader-spinner'
 
 import Header from '../Header'
 
@@ -19,10 +19,10 @@ import {
   HomeFailureImage,
   HomeFailureDescription,
   RetryButton,
-  SavedVideosBanner,
-  SavedVideosHeading,
-  BannerLogoContainer,
+  SpecificVideoContainer,
 } from './styledComponents'
+
+import './index.css'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -116,6 +116,21 @@ class VideoItemDetails extends Component {
     </>
   )
 
+  renderSpecificVideoSuccessView = isDarkTheme => {
+    const {specificVideoDetails} = this.state
+    const {videoUrl} = specificVideoDetails
+
+    return (
+      <>
+        <div className="video-container">
+          <div className="responsive-container">
+            <ReactPlayer url={videoUrl} controls width="98%" />
+          </div>
+        </div>
+      </>
+    )
+  }
+
   renderSpecificVideoSwitchCases = isDarkTheme => {
     const {specificApiStatus} = this.state
 
@@ -125,6 +140,9 @@ class VideoItemDetails extends Component {
 
       case apiStatusConstants.failure:
         return this.renderSpecificVideoFailureView(isDarkTheme)
+
+      case apiStatusConstants.success:
+        return this.renderSpecificVideoSuccessView(isDarkTheme)
 
       default:
         return null
@@ -145,13 +163,9 @@ class VideoItemDetails extends Component {
               <Header />
               <SpecificVideoSection>
                 <Sidebar />
-                <SavedVideosBanner>
-                  <BannerLogoContainer>
-                    <AiFillFire fill="red" size={20} />
-                  </BannerLogoContainer>
-                  <SavedVideosHeading>Saved Videos</SavedVideosHeading>
-                </SavedVideosBanner>
-                {this.renderSpecificVideoSwitchCases(isDarkTheme)}
+                <SpecificVideoContainer theme={isDarkTheme}>
+                  {this.renderSpecificVideoSwitchCases(isDarkTheme)}
+                </SpecificVideoContainer>
               </SpecificVideoSection>
             </>
           )

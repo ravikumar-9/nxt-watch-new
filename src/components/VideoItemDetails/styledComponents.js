@@ -69,3 +69,16 @@ export const BannerLogoContainer = styled.div`
   justify-content: center;
   border-radius: 50%;
 `
+
+export const SpecificVideoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (min-width: 768px) {
+    width: 85%;
+    margin-left: 15%;
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
+`
