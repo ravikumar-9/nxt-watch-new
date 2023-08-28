@@ -20,6 +20,12 @@ import {
   HomeFailureDescription,
   RetryButton,
   SpecificVideoContainer,
+  VideoDescription,
+  VideoViewAndLikeContainer,
+  VideoViewAndDateContainer,
+  LikeAndDislikeContainer,
+  LikeButton,
+  ViewsHeading,
 } from './styledComponents'
 
 import './index.css'
@@ -118,7 +124,7 @@ class VideoItemDetails extends Component {
 
   renderSpecificVideoSuccessView = isDarkTheme => {
     const {specificVideoDetails} = this.state
-    const {videoUrl} = specificVideoDetails
+    const {videoUrl, description, viewCount} = specificVideoDetails
 
     return (
       <>
@@ -127,6 +133,12 @@ class VideoItemDetails extends Component {
             <ReactPlayer url={videoUrl} controls width="98%" />
           </div>
         </div>
+        <VideoDescription theme={isDarkTheme}>{description}</VideoDescription>
+        <VideoViewAndLikeContainer theme={isDarkTheme}>
+          <VideoViewAndDateContainer theme={isDarkTheme}>
+            <ViewsHeading theme={isDarkTheme}>{viewCount} views</ViewsHeading>
+          </VideoViewAndDateContainer>
+        </VideoViewAndLikeContainer>
       </>
     )
   }
