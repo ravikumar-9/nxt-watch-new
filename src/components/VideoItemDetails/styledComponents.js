@@ -4,6 +4,7 @@ export const SpecificVideoSection = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: row;
+  background-color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
 `
 export const HomeFailureViewContainer = styled.div`
   display: flex;
@@ -91,6 +92,7 @@ export const VideoDescription = styled.p`
 export const VideoViewAndLikeContainer = styled.div`
   display: flex;
   flex-direction: row;
+  width: 90%;
   background-color: ${props => (props.theme === true ? '#0f0f0f' : '#f9f9f9')};
   align-items: center;
   justify-content: space-between;
@@ -98,9 +100,12 @@ export const VideoViewAndLikeContainer = styled.div`
 
 export const VideoViewAndDateContainer = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
-  width: 20%;
+  width: 17%;
+  justify-content: space-between;
   background-color: transparent;
+  margin: 7px;
 `
 
 export const LikeAndDislikeContainer = styled.div`
@@ -122,7 +127,7 @@ export const LikeButton = styled.div`
 `
 
 export const HorizontalLine = styled.hr`
-  width: 90%;
+  width: 98%;
   color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
 `
 
@@ -132,8 +137,8 @@ export const ChannelContainer = styled.div`
 `
 
 export const ChannelLogo = styled.img`
-  height: 50px;
-  width: 90px;
+  height: 70px;
+  width: 130px;
 `
 export const ChannelName = styled.p`
 font-weight:normal;
@@ -143,10 +148,17 @@ color:color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};`
 export const SubscribersCount = styled.p`
 font-weight:normal;
 font-size:10px;
+line-height:0.7;
 color:color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};`
 
 export const ChannelDescription = styled.p`
 font-weight:normal;
-font-size:10px;
+font-size:13px;
 color:color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
+`
+export const ChannelDescriptionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')}; ;
 `

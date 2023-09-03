@@ -116,7 +116,7 @@ class Home extends Component {
           <HomeFailureDescription theme={isDarkTheme}>
             Try different key words or remove search filter
           </HomeFailureDescription>
-          <RetryButton onClick={this.onRetry} theme={isDarkTheme}>
+          <RetryButton type="button" onClick={this.onRetry} theme={isDarkTheme}>
             Retry
           </RetryButton>
         </HomeFailureViewContainer>

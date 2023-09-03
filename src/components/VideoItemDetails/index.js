@@ -1,5 +1,7 @@
 import {Component} from 'react'
 
+import {formatDistanceToNow} from 'date-fns'
+
 import Cookies from 'js-cookie'
 
 import ReactPlayer from 'react-player'
@@ -23,9 +25,14 @@ import {
   VideoDescription,
   VideoViewAndLikeContainer,
   VideoViewAndDateContainer,
-  LikeAndDislikeContainer,
-  LikeButton,
   ViewsHeading,
+  HorizontalLine,
+  ChannelContainer,
+  ChannelLogo,
+  ChannelDescriptionContainer,
+  ChannelName,
+  ChannelDescription,
+  SubscribersCount,
 } from './styledComponents'
 
 import './index.css'
@@ -124,7 +131,26 @@ class VideoItemDetails extends Component {
 
   renderSpecificVideoSuccessView = isDarkTheme => {
     const {specificVideoDetails} = this.state
-    const {videoUrl, description, viewCount} = specificVideoDetails
+    const {
+      videoUrl,
+      title,
+      description,
+      viewCount,
+      publishedAt,
+      channel,
+    } = specificVideoDetails
+    const splittedDate = publishedAt.split(' ')
+    const year = splittedDate[2]
+    const month = splittedDate[0]
+    const dateLength = splittedDate[1].length
+    const date = splittedDate[1].slice(-dateLength, -1)
+
+    const formattedDate = formatDistanceToNow(
+      new Date(`${year}-${month}-${date}`),
+    )
+    console.log(formattedDate)
+    const formattedPublishedDate = formattedDate.split(' ')
+    const s = formattedPublishedDate.slice(1).join(' ')
 
     return (
       <>
@@ -133,12 +159,25 @@ class VideoItemDetails extends Component {
             <ReactPlayer url={videoUrl} controls width="98%" />
           </div>
         </div>
-        <VideoDescription theme={isDarkTheme}>{description}</VideoDescription>
+        <VideoDescription theme={isDarkTheme}>{title}</VideoDescription>
         <VideoViewAndLikeContainer theme={isDarkTheme}>
           <VideoViewAndDateContainer theme={isDarkTheme}>
             <ViewsHeading theme={isDarkTheme}>{viewCount} views</ViewsHeading>
+            <ViewsHeading theme={isDarkTheme}> {s} ago</ViewsHeading>
           </VideoViewAndDateContainer>
         </VideoViewAndLikeContainer>
+
+        <HorizontalLine />
+        <ChannelContainer>
+          <ChannelLogo src={channel.profile_image_url} alt="channel logo" />
+          <ChannelDescriptionContainer theme={isDarkTheme}>
+            <ChannelName>{channel.name}</ChannelName>
+            <SubscribersCount>
+              {channel.subscriber_count} subscribers
+            </SubscribersCount>
+            <ChannelDescription>{description}</ChannelDescription>
+          </ChannelDescriptionContainer>
+        </ChannelContainer>
       </>
     )
   }
@@ -173,7 +212,10 @@ class VideoItemDetails extends Component {
           return (
             <>
               <Header />
-              <SpecificVideoSection>
+              <SpecificVideoSection
+                data-testid="videoItemDetails"
+                theme={isDarkTheme}
+              >
                 <Sidebar />
                 <SpecificVideoContainer theme={isDarkTheme}>
                   {this.renderSpecificVideoSwitchCases(isDarkTheme)}
