@@ -33,6 +33,8 @@ import {
   ChannelName,
   ChannelDescription,
   SubscribersCount,
+  LikeAndDislikeContainer,
+  LikeButton,
 } from './styledComponents'
 
 import './index.css'
@@ -165,6 +167,9 @@ class VideoItemDetails extends Component {
             <ViewsHeading theme={isDarkTheme}>{viewCount} views</ViewsHeading>
             <ViewsHeading theme={isDarkTheme}> {s} ago</ViewsHeading>
           </VideoViewAndDateContainer>
+          <LikeAndDislikeContainer theme={isDarkTheme}>
+            <LikeButton>h</LikeButton>
+          </LikeAndDislikeContainer>
         </VideoViewAndLikeContainer>
 
         <HorizontalLine />

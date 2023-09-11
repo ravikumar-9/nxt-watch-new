@@ -99,13 +99,24 @@ export const VideoViewAndLikeContainer = styled.div`
 `
 
 export const VideoViewAndDateContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 17%;
-  justify-content: space-between;
-  background-color: transparent;
-  margin: 7px;
+  @media screen and (min-width: 768px) {
+    width: 17%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    margin: 7px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    margin: 7px;
+  }
 `
 
 export const LikeAndDislikeContainer = styled.div`
@@ -117,13 +128,19 @@ export const LikeAndDislikeContainer = styled.div`
 
 export const ViewsHeading = styled.p`
   font-weight: bold;
-  font-size: 11px;
+  @media screen and (min-width: 768px) {
+    font-size: 11px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 9px;
+  }
   color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
 `
-export const LikeButton = styled.div`
+export const LikeButton = styled.button`
   background-color: transparent;
   border: none;
   outline: none;
+  color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
 `
 
 export const HorizontalLine = styled.hr`
