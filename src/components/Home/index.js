@@ -155,8 +155,7 @@ class Home extends Component {
   }
 
   onRetry = () => {
-    this.setState({searchInput: ''})
-    this.getHomeSectionVideos()
+    this.setState({searchInput: ''}, this.getHomeSectionVideos)
   }
 
   renderHomeFailureView = isDarkTheme => (

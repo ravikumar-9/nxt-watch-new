@@ -140,6 +140,12 @@ export const LikeButton = styled.button`
   background-color: transparent;
   border: none;
   outline: none;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
   color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
 `
 
@@ -178,4 +184,16 @@ export const ChannelDescriptionContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')}; ;
+`
+
+export const DisLikeButton = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 20%;
+  color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
 `

@@ -8,6 +8,8 @@ import ReactPlayer from 'react-player'
 
 import Loader from 'react-loader-spinner'
 
+import {BiLike} from 'react-icons/bi'
+
 import Header from '../Header'
 
 import Sidebar from '../Sidebar'
@@ -50,6 +52,7 @@ class VideoItemDetails extends Component {
   state = {
     specificVideoDetails: {},
     specificApiStatus: apiStatusConstants.initial,
+    isLiked: false,
   }
 
   componentDidMount() {
@@ -104,6 +107,10 @@ class VideoItemDetails extends Component {
     this.getSpecificVideoDetails()
   }
 
+  onClickLikeButton = () => {
+    this.setState(prevState => ({isLiked: !prevState.isLiked}))
+  }
+
   renderSpecificVideoFailureView = isDarkTheme => (
     <>
       <HomeFailureViewContainer>
@@ -140,6 +147,7 @@ class VideoItemDetails extends Component {
       viewCount,
       publishedAt,
       channel,
+      isLiked,
     } = specificVideoDetails
     const splittedDate = publishedAt.split(' ')
     const year = splittedDate[2]
@@ -151,6 +159,7 @@ class VideoItemDetails extends Component {
       new Date(`${year}-${month}-${date}`),
     )
     console.log(formattedDate)
+
     const formattedPublishedDate = formattedDate.split(' ')
     const s = formattedPublishedDate.slice(1).join(' ')
 
@@ -168,7 +177,18 @@ class VideoItemDetails extends Component {
             <ViewsHeading theme={isDarkTheme}> {s} ago</ViewsHeading>
           </VideoViewAndDateContainer>
           <LikeAndDislikeContainer theme={isDarkTheme}>
-            <LikeButton>h</LikeButton>
+            {isLiked ? (
+              ''
+            ) : (
+              <LikeButton theme={isDarkTheme} onClick={this.onClickLikeButton}>
+                {isDarkTheme ? (
+                  <BiLike color="white" size={24} />
+                ) : (
+                  <BiLike size={19} />
+                )}
+                Like
+              </LikeButton>
+            )}
           </LikeAndDislikeContainer>
         </VideoViewAndLikeContainer>
 
