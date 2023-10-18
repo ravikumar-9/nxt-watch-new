@@ -8,7 +8,7 @@ import ReactPlayer from 'react-player'
 
 import Loader from 'react-loader-spinner'
 
-import {BiLike} from 'react-icons/bi'
+import {BiLike, BiDislike} from 'react-icons/bi'
 
 import Header from '../Header'
 
@@ -37,6 +37,7 @@ import {
   SubscribersCount,
   LikeAndDislikeContainer,
   LikeButton,
+  DisLikeButton,
 } from './styledComponents'
 
 import './index.css'
@@ -53,6 +54,7 @@ class VideoItemDetails extends Component {
     specificVideoDetails: {},
     specificApiStatus: apiStatusConstants.initial,
     isLiked: false,
+    isDisLiked: false,
   }
 
   componentDidMount() {
@@ -108,7 +110,23 @@ class VideoItemDetails extends Component {
   }
 
   onClickLikeButton = () => {
-    this.setState(prevState => ({isLiked: !prevState.isLiked}))
+    const {isDisLiked} = this.state
+
+    if (isDisLiked === true) {
+      this.setState({isLiked: false})
+    } else {
+      this.setState({isLiked: true})
+    }
+  }
+
+  onClickDisLikeButton = () => {
+    const {isLiked} = this.state
+
+    if (isLiked === true) {
+      this.setState({isDisLiked: false})
+    } else {
+      this.setState({isDisLiked: true})
+    }
   }
 
   renderSpecificVideoFailureView = isDarkTheme => (
@@ -139,7 +157,7 @@ class VideoItemDetails extends Component {
   )
 
   renderSpecificVideoSuccessView = isDarkTheme => {
-    const {specificVideoDetails} = this.state
+    const {specificVideoDetails, isLiked, isDisLiked} = this.state
     const {
       videoUrl,
       title,
@@ -147,7 +165,6 @@ class VideoItemDetails extends Component {
       viewCount,
       publishedAt,
       channel,
-      isLiked,
     } = specificVideoDetails
     const splittedDate = publishedAt.split(' ')
     const year = splittedDate[2]
@@ -178,16 +195,29 @@ class VideoItemDetails extends Component {
           </VideoViewAndDateContainer>
           <LikeAndDislikeContainer theme={isDarkTheme}>
             {isLiked ? (
-              ''
-            ) : (
-              <LikeButton theme={isDarkTheme} onClick={this.onClickLikeButton}>
-                {isDarkTheme ? (
-                  <BiLike color="white" size={24} />
-                ) : (
-                  <BiLike size={19} />
-                )}
+              <LikeButton theme={isLiked}>
+                <BiLike fill="blue" size={17} />
                 Like
               </LikeButton>
+            ) : (
+              <LikeButton theme={isLiked} onClick={this.onClickLikeButton}>
+                <BiLike fill="black" size={17} />
+                Like
+              </LikeButton>
+            )}
+            {isDisLiked ? (
+              <DisLikeButton theme={isDisLiked}>
+                <BiDislike fill="blue" size={17} />
+                Dislike
+              </DisLikeButton>
+            ) : (
+              <DisLikeButton
+                theme={isDisLiked}
+                onClick={this.onClickDisLikeButton}
+              >
+                <BiDislike fill="black" size={17} />
+                Dislike
+              </DisLikeButton>
             )}
           </LikeAndDislikeContainer>
         </VideoViewAndLikeContainer>

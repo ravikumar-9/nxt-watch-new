@@ -122,7 +122,7 @@ export const VideoViewAndDateContainer = styled.div`
 export const LikeAndDislikeContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 35%;
   background-color: transparent;
 `
 
@@ -145,8 +145,8 @@ export const LikeButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 20%;
-  color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
+  width: 15%;
+  color: ${props => (props.theme === true ? 'blue' : '#0f0f0f')};
 `
 
 export const HorizontalLine = styled.hr`
@@ -195,5 +195,5 @@ export const DisLikeButton = styled.button`
   align-items: center;
   justify-content: space-between;
   width: 20%;
-  color: ${props => (props.theme === true ? '#ffffff' : '#0f0f0f')};
+  color: ${props => (props.theme === true ? 'blue' : '#0f0f0f')};
 `
