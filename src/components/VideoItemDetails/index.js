@@ -38,6 +38,7 @@ import {
   LikeAndDislikeContainer,
   LikeButton,
   DisLikeButton,
+  SaveButton,
 } from './styledComponents'
 
 import './index.css'
@@ -113,20 +114,18 @@ class VideoItemDetails extends Component {
     const {isDisLiked} = this.state
 
     if (isDisLiked === true) {
-      this.setState({isLiked: false})
-    } else {
-      this.setState({isLiked: true})
+      this.setState({isDisLiked: false})
     }
+    this.setState({isLiked: true})
   }
 
   onClickDisLikeButton = () => {
     const {isLiked} = this.state
 
     if (isLiked === true) {
-      this.setState({isDisLiked: false})
-    } else {
-      this.setState({isDisLiked: true})
+      this.setState({isLiked: false})
     }
+    this.setState({isDisLiked: true})
   }
 
   renderSpecificVideoFailureView = isDarkTheme => (
@@ -219,6 +218,7 @@ class VideoItemDetails extends Component {
                 Dislike
               </DisLikeButton>
             )}
+            {<SaveButton>Save</SaveButton>}
           </LikeAndDislikeContainer>
         </VideoViewAndLikeContainer>
 

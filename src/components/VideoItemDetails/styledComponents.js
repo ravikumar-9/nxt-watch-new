@@ -122,8 +122,14 @@ export const VideoViewAndDateContainer = styled.div`
 export const LikeAndDislikeContainer = styled.div`
   display: flex;
   align-items: center;
-  width: 35%;
+
   background-color: transparent;
+  @media screen and (min-width: 768px) {
+    width: 35%;
+  }
+  @media screen and (max-width: 767px) {
+    width: 45%;
+  }
 `
 
 export const ViewsHeading = styled.p`
@@ -144,9 +150,17 @@ export const LikeButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 15%;
-  color: ${props => (props.theme === true ? 'blue' : '#0f0f0f')};
+
+  @media screen and (min-width: 768px) {
+    width: 30%;
+    font-size: 13px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 27%;
+    font-size: 10px;
+  }
+
+  color: ${props => (props.theme === true ? '#2563eb' : '#64748b"')};
 `
 
 export const HorizontalLine = styled.hr`
@@ -193,7 +207,34 @@ export const DisLikeButton = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 20%;
-  color: ${props => (props.theme === true ? 'blue' : '#0f0f0f')};
+  font-weight: bold;
+  @media screen and (min-width: 768px) {
+    width: 34%;
+    font-size: 13px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 35%;
+    font-size: 10px;
+  }
+
+  color: ${props => (props.theme === true ? '#2563eb' : '#64748b')};
+`
+export const SaveButton = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  @media screen and (min-width: 768px) {
+    width: 34%;
+    font-size: 13px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 35%;
+    font-size: 10px;
+  }
+
+  color: ${props => (props.theme === true ? '#2563eb' : '#64748b')};
 `
